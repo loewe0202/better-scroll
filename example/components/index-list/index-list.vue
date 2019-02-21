@@ -39,7 +39,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
   import {
     getData,
     addClass,
@@ -83,9 +83,10 @@
       this.touch = {}
     },
     mounted() {
-      setTimeout(() => {
-        this._calculateHeight()
-      }, 20)
+      window.requestAnimationFrame(this._calculateHeight)
+      // setTimeout(() => {
+      //   this._calculateHeight()
+      // }, 20)
     },
     computed: {
       fixedTitle() {
@@ -164,9 +165,10 @@
     },
     watch: {
       data() {
-        setTimeout(() => {
-          this._calculateHeight()
-        }, 20)
+        window.requestAnimationFrame(this._calculateHeight)
+        // setTimeout(() => {
+        //   this._calculateHeight()
+        // }, 20)
       },
       diff(newVal) {
         let fixedTop = (newVal > 0 && newVal < SUBTITLE_HEIGHT) ? newVal - SUBTITLE_HEIGHT : 0

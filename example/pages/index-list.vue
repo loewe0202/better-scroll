@@ -1,6 +1,5 @@
 <template>
-  <page type="index-list"
-               :title="$t('examples.indexList')">
+  <page type="index-list" :title="$t('examples.indexList')">
     <div slot="content">
       <div class="split"></div>
       <div class="view-wrapper">
@@ -11,53 +10,51 @@
     </div>
   </page>
 </template>
+<script>
+import Page from '../components/page/page.vue'
+import IndexList from '../components/index-list/index-list.vue'
+import cityData from '../data/index-list.json'
 
-<script type="text/ecmascript-6">
-  import Page from '../components/page/page.vue'
-  import IndexList from '../components/index-list/index-list.vue'
-  import cityData from '../data/index-list.json'
-
-  export default {
-    components: {
-      Page,
-      IndexList
-    },
+export default {
+  components: {
+    Page,
+    IndexList
+  },
+  data() {
+    return {
+      title: this.$i18n.t('indexListPage.title'),
+      cityData: cityData
+    }
+  },
+  computed: {
     data() {
-      return {
-        title: this.$i18n.t('indexListPage.title'),
-        cityData: cityData
-      }
-    },
-    computed: {
-      data() {
-        let ret = []
-        this.cityData.forEach((cityGroup) => {
-          let group = {}
-          group.name = cityGroup.name
-          group.items = []
-          cityGroup.cities.forEach((city) => {
-            let item = {}
-            item.name = city.name
-            item.value = city.cityid
-            group.items.push(item)
-          })
-          ret.push(group)
+      let ret = []
+      this.cityData.forEach((cityGroup) => {
+        let group = {}
+        group.name = cityGroup.name
+        group.items = []
+        cityGroup.cities.forEach((city) => {
+          let item = {}
+          item.name = city.name
+          item.value = city.cityid
+          group.items.push(item)
         })
-        return ret
-      }
+        ret.push(group)
+      })
+      return ret
+    }
+  },
+  methods: {
+    selectItem(item) {
+      this.$router.back()
+      console.log(item)
     },
-    methods: {
-      selectItem(item) {
-        this.$router.back()
-        console.log(item)
-      },
-      clickTitle(title) {
-        console.log(title)
-      }
+    clickTitle(title) {
+      console.log(title)
     }
   }
+}
 </script>
-
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .split
     position: relative
