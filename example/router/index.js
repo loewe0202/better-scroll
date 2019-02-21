@@ -22,8 +22,7 @@ import PickerRender from 'example/page-render/picker-render'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
       component: Features
     },
@@ -38,8 +37,7 @@ export default new Router({
     {
       path: '/examples',
       component: Examples,
-      children: [
-        {
+      children: [{
           path: 'vertical-scroll/:lang',
           component: VerticalScroll
         },
@@ -78,8 +76,7 @@ export default new Router({
         {
           path: 'nav-list',
           component: NavigatorList,
-          children: [
-            {
+          children: [{
               path: '1/:lang',
               component: SlideRender
             },
